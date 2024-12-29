@@ -28,7 +28,7 @@ RUN apt install -y ninja-build
 RUN apt install -y pkg-config
 RUN apt install -y python3
 RUN apt install -y python3-venv
-RUN apt install -y slirp
+RUN apt install -y libslirp-dev
 RUN apt install -y texinfo
 RUN apt install -y tmux
 RUN apt install -y tzdata
@@ -42,7 +42,7 @@ RUN curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y
 WORKDIR /root
 RUN git clone --branch v8.0.0 --depth 1 --recursive --shallow-submodules --single-branch https://gitlab.com/qemu-project/qemu.git
 WORKDIR qemu
-RUN ./configure --target-list=x86_64-softmmu CFLAGS="-O0 -g -fno-inline" CXXFLAGS="-O0 -g -fno-inline"
+RUN ./configure --enable-slirp --target-list=x86_64-softmmu CFLAGS="-O0 -g -fno-inline" CXXFLAGS="-O0 -g -fno-inline"
 RUN make
 RUN make install
 WORKDIR roms/edk2
@@ -52,7 +52,6 @@ RUN ./OvmfPkg/build.sh -a X64
 WORKDIR /root
 RUN git clone https://github.com/hikalium/wasabi.git
 WORKDIR wasabi
-RUN make
 
 # Expose VNC port.
 ARG vnc_port
