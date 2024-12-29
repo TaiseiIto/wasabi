@@ -6,9 +6,5 @@ VNC_PORT=5900
 
 .PHONY: test
 test:
-	echo REPOSITORY = $(REPOSITORY)
-	echo PRODUCT = $(PRODUCT)
-	echo IMAGE = $(IMAGE)
-	echo CONTAINER = $(CONTAINER)
-	echo VNC_PORT = $(VNC_PORT)
+	./build.sh $(IMAGE) $(CONTAINER) $(VNC_PORT)
 
