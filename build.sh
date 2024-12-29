@@ -6,7 +6,7 @@ vnc_port=$3
 
 # Build a docker image.
 if [ -z "$(docker images --format {{.Repository}} | grep -x $image)" ]; then
-	docker build --build-arg vnc_port=$vnc_port -t $image .
+	docker build --build-arg vnc_port=$vnc_port --no-cache -t $image .
 fi
 
 # Create a docker container.
