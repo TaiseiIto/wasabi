@@ -8,6 +8,7 @@ RUN apt update
 RUN apt upgrade -y
 RUN apt install -y bison
 RUN apt install -y build-essential
+RUN apt install -y clang
 RUN apt install -y curl
 RUN apt install -y dejagnu
 RUN apt install -y dosfstools
@@ -27,6 +28,7 @@ RUN apt install -y ninja-build
 RUN apt install -y pkg-config
 RUN apt install -y python3
 RUN apt install -y python3-venv
+RUN apt install -y slirp
 RUN apt install -y texinfo
 RUN apt install -y tmux
 RUN apt install -y tzdata
@@ -50,6 +52,7 @@ RUN ./OvmfPkg/build.sh -a X64
 WORKDIR /root
 RUN git clone https://github.com/hikalium/wasabi.git
 WORKDIR wasabi
+RUN make
 
 # Expose VNC port.
 ARG vnc_port
