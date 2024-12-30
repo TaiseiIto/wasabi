@@ -1,0 +1,23 @@
+name: build
+on:
+  push:
+    branches:
+      - main
+      - issue1
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@main
+      - name: Make shell scripts executable
+        run: chmod u+x *.sh
+      - name: Build Wasabi
+        run: make build
+      - name: Upload Wasabi
+        uses: actions/upload-artifact@main
+        with:
+          name: WasabiOS
+          path: wasabi.zip
+

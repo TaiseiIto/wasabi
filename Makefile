@@ -13,7 +13,7 @@ delete:
 	./delete.sh $(IMAGE) $(CONTAINER)
 
 .PHONY: run
-run:
+run: build
 	docker start $(CONTAINER)
 	docker exec $(CONTAINER) /bin/bash -c "cd /root/wasabi && source /root/.cargo/env && make vnc > vnc.log 2>&1 &"
 	docker exec $(CONTAINER) /bin/bash -c "cd /root/wasabi && source /root/.cargo/env && make run"
