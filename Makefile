@@ -5,7 +5,7 @@ CONTAINER=$(IMAGE)
 VNC_PORT=5900
 
 .PHONY: test
-test: delete
+test:
 	./build.sh $(IMAGE) $(CONTAINER) $(VNC_PORT)
 
 .PHONY: delete
