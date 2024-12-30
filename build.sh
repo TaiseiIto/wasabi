@@ -18,9 +18,9 @@ fi
 if [ -z "$(docker ps --format {{.Names}} | grep -x $container)" ]; then
 	docker start $container
 	docker exec $container /bin/bash -c "cd /root/wasabi && source /root/.cargo/env && make"
-	docker exec $container /bin/bash -c "cd /root/wasabi && source /root/.cargo/env && make vnc > vnc.log 2>&1 &"
+	docker exec $container /bin/bash -c "cd /root/wasabi && source /root/.cargo/env && make run_deps"
+	docker exec $container /bin/bash -c "cd /root/wasabi && cp target/x86_64-unknown-uefi/debug/os.efi mnt/EFI/BOOT/BOOTX64.EFI"
+	docker exec $container /bin/bash -c "cd /root/wasabi && zip -r wasabi.zip mnt"
+	docker cp $container:/root/wasabi/wasabi.zip .
 fi
-
-# Attach the docker container
-docker attach $container
 
