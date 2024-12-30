@@ -35,6 +35,7 @@ RUN apt install -y tmux
 RUN apt install -y tzdata
 RUN apt install -y uuid-dev
 RUN apt install -y vim
+RUN apt install -y wget
 
 # Install Rust.
 RUN curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y
