@@ -25,7 +25,7 @@ RUN apt install -y libpixman-1-dev
 RUN apt install -y libslirp-dev
 RUN apt install -y lld
 RUN apt install -y nasm
-RUN apt install -y netcat
+RUN apt install -y netcat-openbsd
 RUN apt install -y ninja-build
 RUN apt install -y pkg-config
 RUN apt install -y python3
