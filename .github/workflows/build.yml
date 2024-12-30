@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@main
-      - name: Make shell scripts executable
-        run: chmod u+x *.sh
       - name: Build Wasabi
         run: make build
       - name: Upload Wasabi
