@@ -28,7 +28,7 @@ RUN apt install -y nasm
 RUN apt install -y netcat-openbsd
 RUN apt install -y ninja-build
 RUN apt install -y pkg-config
-RUN apt install -y python3
+RUN apt install -y python3.10
 RUN apt install -y python3-venv
 RUN apt install -y texinfo
 RUN apt install -y tmux
