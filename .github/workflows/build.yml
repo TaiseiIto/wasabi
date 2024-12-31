@@ -17,5 +17,5 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: WasabiOS
-          path: wasabi.zip
+          path: mnt
 

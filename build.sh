@@ -21,6 +21,6 @@ if [ -z "$(docker ps --format {{.Names}} | grep -x $container)" ]; then
 	docker exec $container /bin/bash -c "cd /root/wasabi && source /root/.cargo/env && make run_deps"
 	docker exec $container /bin/bash -c "cd /root/wasabi && cp target/x86_64-unknown-uefi/debug/os.efi mnt/EFI/BOOT/BOOTX64.EFI"
 	docker exec $container /bin/bash -c "cd /root/wasabi && zip -r wasabi.zip mnt"
-	docker cp $container:/root/wasabi/wasabi.zip .
+	docker cp $container:/root/wasabi/mnt mnt
 fi
 
