@@ -17,11 +17,15 @@ fi
 # Start the docker container.
 if [ -z "$(docker ps --format {{.Names}} | grep -x $container)" ]; then
 	docker start $container
-	docker exec $container /bin/bash -c "cd /root/wasabi && source /root/.cargo/env && make"
-	docker exec $container /bin/bash -c "cd /root/wasabi && source /root/.cargo/env && make run_deps"
-	docker exec $container /bin/bash -c "cd /root/wasabi && cp target/x86_64-unknown-uefi/debug/os.efi mnt/EFI/BOOT/BOOTX64.EFI"
-	docker exec $container /bin/bash -c "cd /root/wasabi && zip -r wasabi.zip mnt"
+	docker exec $container /bin/bash -c "cd /root/wasabi && ./build_on_container.sh"
+	docker stop $container
+fi
+
+# Extract WasabiOS
+if [ ! -e wasabi.zip ]; then
 	docker cp $container:/root/wasabi/wasabi.zip wasabi.zip
+fi
+if [ ! -d mnt ]; then
 	docker cp $container:/root/wasabi/mnt mnt
 fi
 
