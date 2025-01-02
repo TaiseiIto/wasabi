@@ -55,6 +55,9 @@ RUN ./OvmfPkg/build.sh -a X64
 WORKDIR /root
 RUN git clone https://github.com/hikalium/wasabi.git
 WORKDIR wasabi
+RUN git checkout 8e23542da41be26f37d52f2be1b728c06c53fffa
+COPY build_on_container.sh build_on_container.sh
+COPY run_on_container.sh run_on_container.sh
 
 # Expose VNC port.
 ARG vnc_port
