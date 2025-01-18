@@ -2,7 +2,7 @@
 
 container=$1
 
-docker start $container
-docker exec $container /bin/bash -c "cd /root/wasabi && ./run_on_container.sh"
 docker stop $container
+docker start $container
+docker exec --workdir /root/wasabi $container ./run_on_container.sh
 

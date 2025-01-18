@@ -17,7 +17,7 @@ fi
 # Start the docker container.
 if [ -z "$(docker ps --format {{.Names}} | grep -x $container)" ]; then
 	docker start $container
-	docker exec $container /bin/bash -c "cd /root/wasabi && ./build_on_container.sh"
+	docker exec --workdir /root/wasabi $container ./build_on_container.sh
 	docker stop $container
 fi
 
