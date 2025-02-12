@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - issue5
 jobs:
   build:
     name: build
