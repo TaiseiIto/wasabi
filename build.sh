@@ -17,6 +17,7 @@ fi
 # Start the docker container.
 if [ -z "$(docker ps --format {{.Names}} | grep -x $container)" ]; then
 	docker start $container
+	docker exec --workdir /root/saba $container ./build_saba.sh
 	docker exec --workdir /root/wasabi $container ./build_wasabi.sh
 	docker stop $container
 fi

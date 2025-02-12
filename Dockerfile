@@ -62,6 +62,7 @@ WORKDIR /root
 RUN git clone https://github.com/d0iasm/saba.git
 WORKDIR saba
 RUN git checkout 29b43505168a2be021509bd25061342a4fd30004
+COPY build_saba.sh build_saba.sh
 
 # Expose VNC port.
 ARG vnc_port
