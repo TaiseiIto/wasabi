@@ -6,7 +6,7 @@ vnc_port=$3
 
 # Build a docker image.
 if [ -z "$(docker images --format {{.Repository}} | grep -x $image)" ]; then
-	docker build --build-arg vnc_port=$vnc_port --no-cache -t $image .
+	docker build --build-arg vnc_port=$vnc_port -t $image .
 fi
 
 # Create a docker container.
@@ -17,7 +17,7 @@ fi
 # Start the docker container.
 if [ -z "$(docker ps --format {{.Names}} | grep -x $container)" ]; then
 	docker start $container
-	docker exec --workdir /root/wasabi $container ./build_on_container.sh
+	docker exec --workdir /root/wasabi $container ./build_wasabi.sh
 	docker stop $container
 fi
 
