@@ -1,0 +1,36 @@
+diff --git a/core/src/renderer/css/token.rs b/core/src/renderer/css/token.rs
+index aefd145..9f569de 100644
+--- a/core/src/renderer/css/token.rs
++++ b/core/src/renderer/css/token.rs
+@@ -213,15 +213,8 @@ impl Iterator for CssTokenizer {
+                     continue;
+                 }
+                 _ => {
+-                    /*
+-                    console_error(
+-                        self.browser.clone(),
+-                        format!("char {} is not supported yet", c),
+-                    );
+                     self.pos += 1;
+                     continue;
+-                    */
+-                    panic!("char {} is not supported yet", c);
+                 }
+             };
+ 
+diff --git a/core/src/renderer/js/token.rs b/core/src/renderer/js/token.rs
+index ff0a09a..62d875c 100644
+--- a/core/src/renderer/js/token.rs
++++ b/core/src/renderer/js/token.rs
+@@ -154,7 +154,10 @@ impl Iterator for JsLexer {
+             '0'..='9' => Token::Number(self.consume_number()),
+             // https://262.ecma-international.org/12.0/#prod-IdentifierStart
+             'a'..='z' | 'A'..='Z' | '_' | '$' => Token::Identifier(self.consume_identifier()),
+-            _ => unimplemented!("char {:?} is not supported yet", c),
++            _ => {
++                self.pos += 1;
++                return self.next();
++            },
+         };
+ 
+         Some(token)
